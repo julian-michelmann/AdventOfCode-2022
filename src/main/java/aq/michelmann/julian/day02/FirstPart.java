@@ -33,7 +33,7 @@ public class FirstPart {
     private static final Triple<String, String, Long> PAPER_VS_ELF_ROCK = new ImmutableTriple<>(PAPER, ELVES_ROCK, POINTS_WINNING_A_GAME + POINTS_PAPER);
     private static final Triple<String, String, Long> PAPER_VS_ELF_PAPER = new ImmutableTriple<>(PAPER, ELVES_PAPER, POINTS_DRAW_A_GAME + POINTS_PAPER);
     private static final Triple<String, String, Long> PAPER_VS_ELF_SCISSOR = new ImmutableTriple<>(PAPER, ELVES_SCISSOR, POINTS_LOOSING_A_GAME + POINTS_PAPER);
-    
+
     private static final Triple<String, String, Long> SCISSOR_VS_ELF_ROCK = new ImmutableTriple<>(SCISSOR, ELVES_ROCK, POINTS_LOOSING_A_GAME + POINTS_SCISSOR);
     private static final Triple<String, String, Long> SCISSOR_VS_ELF_PAPER = new ImmutableTriple<>(SCISSOR, ELVES_PAPER, POINTS_WINNING_A_GAME + POINTS_SCISSOR);
     private static final Triple<String, String, Long> SCISSOR_VS_ELF_SCISSOR = new ImmutableTriple<>(SCISSOR, ELVES_SCISSOR, POINTS_DRAW_A_GAME + POINTS_SCISSOR);
@@ -52,39 +52,22 @@ public class FirstPart {
 
 
     public Long solve(List<Pair<String, String>> input) {
-        
-        int inputLength = input.size();
-        
-        List<Long> resultsPlayedMatches = input
+
+        return input
                 .stream()
                 .map(match -> match(match.getLeft(), match.getRight()))
                 .filter(points -> points > 0 && points < 10)
-                .toList();
-        
-        if(inputLength != resultsPlayedMatches.size()) {
-            throw new RuntimeException("The amount of results from matches is not fitting");
-        }
-        
-        return resultsPlayedMatches.stream()
                 .mapToLong(i -> i)
                 .sum();
     }
 
     private Long match(String playedShape, String playedShapeByElf) {
 
-        List<Triple<String, String, Long>> applyingRoul = ruleBook
+        return ruleBook
                 .stream()
                 .filter(rule -> Objects.equals(rule.getMiddle(), playedShape))
                 .filter(rule -> Objects.equals(rule.getLeft(), playedShapeByElf))
-                .toList();
-        
-        
-        
-        if(applyingRoul.size() != 1) {
-            throw new RuntimeException("More then one rule applies");
-        }
-
-        return applyingRoul.stream().findFirst()
+                .findFirst()
                 .get()
                 .getRight();
     }
