@@ -8,9 +8,9 @@ import java.util.List;
 
 public class FirstPart {
     private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-    public static final String ELF_ITEMS_AS_STRING = ALPHABET + ALPHABET.toUpperCase();
+    private static final String ELF_ITEMS_AS_STRING = ALPHABET + ALPHABET.toUpperCase();
 
-    public static final List<String> ELF_ITEMS = new ArrayList<>(Arrays.asList(ELF_ITEMS_AS_STRING.split("")));
+    protected static final List<String> ELF_ITEMS = new ArrayList<>(Arrays.asList(ELF_ITEMS_AS_STRING.split("")));
 
 
     Long solve(List<Pair<String, String>> rucksacks) {

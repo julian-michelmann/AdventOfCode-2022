@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
     testImplementation 'org.mockito:mockito-junit-jupiter:4.9.0'
     implementation 'org.javatuples:javatuples:1.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

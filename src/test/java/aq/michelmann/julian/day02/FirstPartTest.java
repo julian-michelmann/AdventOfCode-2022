@@ -3,15 +3,12 @@ package aq.michelmann.julian.day02;
 import aq.michelmann.julian.util.InputReader;
 import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(MockitoExtension.class)
 class FirstPartTest {
 
     FirstPart firstPart = new FirstPart();
