@@ -10,12 +10,12 @@ public class FirstPart {
     int solve(List<Pair<Range<Integer>, Range<Integer>>> elfPairs) {
         return elfPairs
                 .stream()
-                .filter(elfPair -> fullyContainsEachOther(elfPair.getValue0(), elfPair.getValue1()))
+                .filter(elfPair -> containsEachOther(elfPair.getValue0(), elfPair.getValue1()))
                 .toList()
                 .size();
     }
 
-    boolean fullyContainsEachOther(Range<Integer> firstElfRange, Range<Integer> secondElfRange) {
+    boolean containsEachOther(Range<Integer> firstElfRange, Range<Integer> secondElfRange) {
         return firstElfRange.containsRange(secondElfRange) || secondElfRange.containsRange(firstElfRange);
     }
 }
