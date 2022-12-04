@@ -1,8 +1,9 @@
 package aq.michelmann.julian.util;
 
 
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.Pair;
+
+
+import org.javatuples.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,6 +42,22 @@ public class InputReader {
 
         return readyInput;
     }
+    
+    public List<Pair<String, String>> getStringPairs(String day) throws FileNotFoundException {
+        List<Pair<String, String>> rucksacks = new ArrayList<>();
+        Scanner myReader = readFile(day);
+
+        while (myReader.hasNextLine()) {
+            String data = myReader.nextLine();
+
+            final int mid = data.length() / 2;
+            String[] parts = {data.substring(0, mid),data.substring(mid)};
+
+            rucksacks.add(Pair.fromCollection(List.of(parts[0], parts[1])));
+        }
+        
+        return rucksacks;
+    }
 
     public List<Pair<String, String>> getListOfStringPairs(String day) throws FileNotFoundException {
         List<Pair<String, String>> resultList = new ArrayList<>();
@@ -49,7 +66,7 @@ public class InputReader {
 
         while (myReader.hasNextLine()) {
             String[] data = myReader.nextLine().split(" ");
-            resultList.add(new MutablePair<>(data[0], data[1]));
+            resultList.add(new Pair<>(data[0], data[1]));
         }
 
         return resultList;

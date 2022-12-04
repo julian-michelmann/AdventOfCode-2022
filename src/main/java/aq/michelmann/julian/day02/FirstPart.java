@@ -1,6 +1,7 @@
 package aq.michelmann.julian.day02;
 
-import org.apache.commons.lang3.tuple.Pair;
+
+import org.javatuples.Pair;
 import org.javatuples.Quartet;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class FirstPart {
 
         return input
                 .stream()
-                .map(match -> match(match.getLeft(), match.getRight()))
+                .map(match -> match(match.getValue0(), match.getValue1()))
                 .filter(points -> points > 0 && points < 10)
                 .mapToLong(i -> i)
                 .sum();
