@@ -2,6 +2,7 @@ package aq.michelmann.julian.day03;
 
 import aq.michelmann.julian.util.InputReader;
 import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -15,5 +16,12 @@ public class Main {
         Long result = firstPart.solve(input);
 
         System.out.println(result);
+
+        List<Triplet<String, String, String>> inputForSecondPart = inputReader.getAsTriples("03");
+        
+        SecondPart secondPart = new SecondPart();
+        Long resultOfSecondPart = secondPart.solve(inputForSecondPart);
+
+        System.out.println(resultOfSecondPart);
     }
 }

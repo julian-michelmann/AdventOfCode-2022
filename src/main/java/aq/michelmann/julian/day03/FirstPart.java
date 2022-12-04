@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FirstPart {
-    String alphabet = "abcdefghijklmnopqrstuvwxyz";
-    String elfItemsAsString = alphabet + alphabet.toUpperCase();
+    private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    public static final String ELF_ITEMS_AS_STRING = ALPHABET + ALPHABET.toUpperCase();
 
-    List<String> elfItems = new ArrayList<>(Arrays.asList(elfItemsAsString.split("")));
+    public static final List<String> ELF_ITEMS = new ArrayList<>(Arrays.asList(ELF_ITEMS_AS_STRING.split("")));
 
 
     Long solve(List<Pair<String, String>> rucksacks) {
@@ -24,11 +24,11 @@ public class FirstPart {
 
     Long analyzePriorityForRucksack(String firstCompartment, String secondCompartment) {
 
-        return Long.valueOf(elfItems
+        return Long.valueOf(ELF_ITEMS
                 .stream()
                 .filter(firstCompartment::contains)
                 .filter(secondCompartment::contains)
-                .map(item -> elfItems.indexOf(item) + 1) // Priority for item is position + 1
+                .map(item -> ELF_ITEMS.indexOf(item) + 1) // Priority for item is position + 1
                 .findFirst()
                 .get());
     }

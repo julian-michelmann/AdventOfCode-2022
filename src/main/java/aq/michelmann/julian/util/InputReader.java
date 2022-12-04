@@ -1,13 +1,14 @@
 package aq.michelmann.julian.util;
 
 
-
-
 import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class InputReader {
 
@@ -42,7 +43,7 @@ public class InputReader {
 
         return readyInput;
     }
-    
+
     public List<Pair<String, String>> getStringPairs(String day) throws FileNotFoundException {
         List<Pair<String, String>> rucksacks = new ArrayList<>();
         Scanner myReader = readFile(day);
@@ -51,11 +52,13 @@ public class InputReader {
             String data = myReader.nextLine();
 
             final int mid = data.length() / 2;
-            String[] parts = {data.substring(0, mid),data.substring(mid)};
+            String[] parts = {data.substring(0, mid), data.substring(mid)};
 
             rucksacks.add(Pair.fromCollection(List.of(parts[0], parts[1])));
         }
-        
+
+        myReader.close();
+
         return rucksacks;
     }
 
@@ -69,10 +72,29 @@ public class InputReader {
             resultList.add(new Pair<>(data[0], data[1]));
         }
 
+        myReader.close();
+
         return resultList;
     }
 
-    private Scanner  readFile(String day) throws FileNotFoundException {
+    public List<Triplet<String, String, String>> getAsTriples(String day) throws FileNotFoundException {
+
+        Scanner myReader = readFile(day);
+
+        List<Triplet<String, String, String>> triples = new ArrayList<>();
+
+        while (myReader.hasNextLine()) {
+            String firstLine = myReader.nextLine();
+            String secondLine = myReader.nextLine();
+            String thirdLine = myReader.nextLine();
+            
+            triples.add(new Triplet<>(firstLine, secondLine, thirdLine));
+        }
+
+        return triples;
+    }
+
+    private Scanner readFile(String day) throws FileNotFoundException {
         File myObj = new File(String.format(PATH_TO_INPUT_FILES, day));
         return new Scanner(myObj);
     }
