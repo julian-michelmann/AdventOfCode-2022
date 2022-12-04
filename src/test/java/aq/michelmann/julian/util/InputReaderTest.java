@@ -1,6 +1,7 @@
 package aq.michelmann.julian.util;
 
 
+import org.apache.commons.lang3.Range;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,5 +56,17 @@ class InputReaderTest {
         assertEquals("wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn", result.get(1).getValue0());
         assertEquals("ttgJtRGJQctTZtZT", result.get(1).getValue1());
         assertEquals("CrZsJsPPZsGzwwsLwLmpwMDw", result.get(1).getValue2());
+    }
+    
+    @Test
+    void getAsListOfRangePairs() throws FileNotFoundException {
+        List<Pair<Range<Integer>, Range<Integer>>> result = inputReader.getAsListOfRangePairs("04-test");
+        
+        assertEquals(new Pair<>(Range.between(2, 4), Range.between(6, 8)), result.get(0));
+        assertEquals(new Pair<>(Range.between(2, 3), Range.between(4, 5)), result.get(1));
+        assertEquals(new Pair<>(Range.between(5, 7), Range.between(7, 9)), result.get(2));
+        assertEquals(new Pair<>(Range.between(2, 8), Range.between(3, 7)), result.get(3));
+        assertEquals(new Pair<>(Range.between(6, 6), Range.between(4, 6)), result.get(4));
+        assertEquals(new Pair<>(Range.between(2, 6), Range.between(4, 8)), result.get(5));
     }
 }
