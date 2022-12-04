@@ -1,44 +1,47 @@
 package aq.michelmann.julian.day02;
 
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
+import org.javatuples.Quartet;
 
 import java.util.List;
 import java.util.Objects;
 
 public class FirstPart {
 
-    private static final Long POINTS_WINNING_A_GAME = 6L;
-    private static final Long POINTS_DRAW_A_GAME = 3L;
-    private static final Long POINTS_LOOSING_A_GAME = 0L;
+    protected static final String STATUS_WIN = "win";
+    protected static final String STATUS_LOOS = "loos";
+    protected static final String STATUS_DRAW = "draw";
 
-    private static final String ROCK = "X";
-    private static final String PAPER = "Y";
-    private static final String SCISSOR = "Z";
+    protected static final Long POINTS_WINNING_A_GAME = 6L;
+    protected static final Long POINTS_DRAW_A_GAME = 3L;
+    protected static final Long POINTS_LOOSING_A_GAME = 0L;
 
-    private static final String ELVES_ROCK = "A";
-    private static final String ELVES_PAPER = "B";
-    private static final String ELVES_SCISSOR = "C";
+    protected static final String ROCK = "X";
+    protected static final String PAPER = "Y";
+    protected static final String SCISSOR = "Z";
 
-    private static final Long POINTS_ROCK = 1L;
-    private static final Long POINTS_PAPER = 2L;
-    private static final Long POINTS_SCISSOR = 3L;
+    protected static final String ELVES_ROCK = "A";
+    protected static final String ELVES_PAPER = "B";
+    protected static final String ELVES_SCISSOR = "C";
+
+    protected static final Long POINTS_ROCK = 1L;
+    protected static final Long POINTS_PAPER = 2L;
+    protected static final Long POINTS_SCISSOR = 3L;
 
 
-    private static final Triple<String, String, Long> ROCK_VS_ELF_ROCK = new ImmutableTriple<>(ROCK, ELVES_ROCK, POINTS_DRAW_A_GAME + POINTS_ROCK);
-    private static final Triple<String, String, Long> ROCK_VS_ELF_PAPER = new ImmutableTriple<>(ROCK, ELVES_PAPER, POINTS_LOOSING_A_GAME + POINTS_ROCK);
-    private static final Triple<String, String, Long> ROCK_VS_ELF_SCISSOR = new ImmutableTriple<>(ROCK, ELVES_SCISSOR, POINTS_WINNING_A_GAME + POINTS_ROCK);
+    protected static final Quartet<String, String, String, Long> ROCK_VS_ELF_ROCK = new Quartet<>(ROCK, ELVES_ROCK, STATUS_DRAW, POINTS_DRAW_A_GAME + POINTS_ROCK);
+    protected static final Quartet<String, String, String, Long> ROCK_VS_ELF_PAPER = new Quartet<>(ROCK, ELVES_PAPER, STATUS_LOOS, POINTS_LOOSING_A_GAME + POINTS_ROCK);
+    protected static final Quartet<String, String, String, Long> ROCK_VS_ELF_SCISSOR = new Quartet<>(ROCK, ELVES_SCISSOR, STATUS_WIN, POINTS_WINNING_A_GAME + POINTS_ROCK);
 
-    private static final Triple<String, String, Long> PAPER_VS_ELF_ROCK = new ImmutableTriple<>(PAPER, ELVES_ROCK, POINTS_WINNING_A_GAME + POINTS_PAPER);
-    private static final Triple<String, String, Long> PAPER_VS_ELF_PAPER = new ImmutableTriple<>(PAPER, ELVES_PAPER, POINTS_DRAW_A_GAME + POINTS_PAPER);
-    private static final Triple<String, String, Long> PAPER_VS_ELF_SCISSOR = new ImmutableTriple<>(PAPER, ELVES_SCISSOR, POINTS_LOOSING_A_GAME + POINTS_PAPER);
+    protected static final Quartet<String, String, String, Long> PAPER_VS_ELF_ROCK = new Quartet<>(PAPER, ELVES_ROCK, STATUS_WIN, POINTS_WINNING_A_GAME + POINTS_PAPER);
+    protected static final Quartet<String, String, String, Long> PAPER_VS_ELF_PAPER = new Quartet<>(PAPER, ELVES_PAPER, STATUS_DRAW, POINTS_DRAW_A_GAME + POINTS_PAPER);
+    protected static final Quartet<String, String, String, Long> PAPER_VS_ELF_SCISSOR = new Quartet<>(PAPER, ELVES_SCISSOR, STATUS_LOOS, POINTS_LOOSING_A_GAME + POINTS_PAPER);
 
-    private static final Triple<String, String, Long> SCISSOR_VS_ELF_ROCK = new ImmutableTriple<>(SCISSOR, ELVES_ROCK, POINTS_LOOSING_A_GAME + POINTS_SCISSOR);
-    private static final Triple<String, String, Long> SCISSOR_VS_ELF_PAPER = new ImmutableTriple<>(SCISSOR, ELVES_PAPER, POINTS_WINNING_A_GAME + POINTS_SCISSOR);
-    private static final Triple<String, String, Long> SCISSOR_VS_ELF_SCISSOR = new ImmutableTriple<>(SCISSOR, ELVES_SCISSOR, POINTS_DRAW_A_GAME + POINTS_SCISSOR);
+    protected static final Quartet<String, String, String, Long> SCISSOR_VS_ELF_ROCK = new Quartet<>(SCISSOR, ELVES_ROCK, STATUS_LOOS, POINTS_LOOSING_A_GAME + POINTS_SCISSOR);
+    protected static final Quartet<String, String, String, Long> SCISSOR_VS_ELF_PAPER = new Quartet<>(SCISSOR, ELVES_PAPER, STATUS_WIN, POINTS_WINNING_A_GAME + POINTS_SCISSOR);
+    protected static final Quartet<String, String, String, Long> SCISSOR_VS_ELF_SCISSOR = new Quartet<>(SCISSOR, ELVES_SCISSOR, STATUS_DRAW, POINTS_DRAW_A_GAME + POINTS_SCISSOR);
 
-    List<Triple<String, String, Long>> ruleBook = List.of(
+    List<Quartet<String, String, String, Long>> ruleBook = List.of(
             ROCK_VS_ELF_ROCK,
             ROCK_VS_ELF_PAPER,
             ROCK_VS_ELF_SCISSOR,
@@ -50,7 +53,6 @@ public class FirstPart {
             SCISSOR_VS_ELF_SCISSOR
     );
 
-
     public Long solve(List<Pair<String, String>> input) {
 
         return input
@@ -61,14 +63,14 @@ public class FirstPart {
                 .sum();
     }
 
-    private Long match(String playedShape, String playedShapeByElf) {
+    protected Long match(String playedShapeByElf, String playedShape) {
 
         return ruleBook
                 .stream()
-                .filter(rule -> Objects.equals(rule.getMiddle(), playedShape))
-                .filter(rule -> Objects.equals(rule.getLeft(), playedShapeByElf))
+                .filter(rule -> Objects.equals(rule.getValue1(), playedShapeByElf))
+                .filter(rule -> Objects.equals(rule.getValue0(), playedShape))
                 .findFirst()
                 .get()
-                .getRight();
+                .getValue3();
     }
 }

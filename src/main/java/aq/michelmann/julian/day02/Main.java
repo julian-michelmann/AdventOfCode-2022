@@ -15,5 +15,10 @@ public class Main {
         Long result = firstPart.solve(input);
 
         System.out.println(result);
+        
+        SecondPart secondPart = new SecondPart();
+        Long secondResult = secondPart.solve(input);
+
+        System.out.println(secondResult);
     }
 }
