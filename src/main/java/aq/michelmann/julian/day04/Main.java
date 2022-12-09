@@ -1,6 +1,5 @@
 package aq.michelmann.julian.day04;
 
-import aq.michelmann.julian.util.InputReader;
 import org.apache.commons.lang3.Range;
 import org.javatuples.Pair;
 

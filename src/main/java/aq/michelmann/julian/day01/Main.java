@@ -1,7 +1,5 @@
 package aq.michelmann.julian.day01;
 
-import aq.michelmann.julian.util.InputReader;
-
 import java.io.FileNotFoundException;
 import java.util.List;
 

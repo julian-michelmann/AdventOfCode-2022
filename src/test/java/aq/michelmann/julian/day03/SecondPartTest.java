@@ -1,6 +1,5 @@
 package aq.michelmann.julian.day03;
 
-import aq.michelmann.julian.util.InputReader;
 import org.javatuples.Triplet;
 import org.junit.jupiter.api.Test;
 

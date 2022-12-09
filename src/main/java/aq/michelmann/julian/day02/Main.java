@@ -1,6 +1,6 @@
 package aq.michelmann.julian.day02;
 
-import aq.michelmann.julian.util.InputReader;
+
 import org.javatuples.Pair;
 
 

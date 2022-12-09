@@ -1,7 +1,6 @@
-package aq.michelmann.julian.util;
+package aq.michelmann.julian.day03;
 
-
-import org.apache.commons.lang3.Range;
+import aq.michelmann.julian.base.InputReaderBase;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,28 +9,15 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class InputReaderTest {
+class InputReaderTest extends InputReaderBase {
 
     private InputReader inputReader;
 
     @BeforeEach
     void setUp() {
         inputReader = new InputReader();
-    }
-
-    @Test
-    void getInputAsMappedStringPairs() throws FileNotFoundException {
-        Pair<String, String> expectedPair1 = new Pair<>("A", "Y");
-        Pair<String, String> expectedPair2 = new Pair<>("B", "X");
-        Pair<String, String> expectedPair3 = new Pair<>("C", "Z");
-
-        List<Pair<String, String>> result = inputReader.getListOfStringPairs("02-test");
-
-        assertEquals(expectedPair1, result.get(0));
-        assertEquals(expectedPair2, result.get(1));
-        assertEquals(expectedPair3, result.get(2));
     }
 
     @Test
@@ -57,16 +43,5 @@ class InputReaderTest {
         assertEquals("ttgJtRGJQctTZtZT", result.get(1).getValue1());
         assertEquals("CrZsJsPPZsGzwwsLwLmpwMDw", result.get(1).getValue2());
     }
-    
-    @Test
-    void getAsListOfRangePairs() throws FileNotFoundException {
-        List<Pair<Range<Integer>, Range<Integer>>> result = inputReader.getAsListOfRangePairs("04-test");
-        
-        assertEquals(new Pair<>(Range.between(2, 4), Range.between(6, 8)), result.get(0));
-        assertEquals(new Pair<>(Range.between(2, 3), Range.between(4, 5)), result.get(1));
-        assertEquals(new Pair<>(Range.between(5, 7), Range.between(7, 9)), result.get(2));
-        assertEquals(new Pair<>(Range.between(2, 8), Range.between(3, 7)), result.get(3));
-        assertEquals(new Pair<>(Range.between(6, 6), Range.between(4, 6)), result.get(4));
-        assertEquals(new Pair<>(Range.between(2, 6), Range.between(4, 8)), result.get(5));
-    }
+
 }
