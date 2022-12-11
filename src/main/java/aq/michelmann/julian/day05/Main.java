@@ -3,6 +3,7 @@ package aq.michelmann.julian.day05;
 import org.javatuples.Triplet;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -13,8 +14,16 @@ public class Main {
         List<List<String>> stacks = inputReader.getStacksOfItems("05");
         List<Triplet<Integer, Integer, Integer>> instructions = inputReader.getListOfInstructionTriples("05");
         
-        String result = firstPart.solve(stacks, instructions);
+        String resultFirstPart = firstPart.solve(new ArrayList<>(stacks), new ArrayList<>(instructions));
         
-        System.out.println(result);
+        System.out.println(resultFirstPart);
+        
+        stacks = inputReader.getStacksOfItems("05");
+        instructions = inputReader.getListOfInstructionTriples("05");
+        
+        SecondPart secondPart = new SecondPart();
+        String resultSecondPart = secondPart.solve(new ArrayList<>(stacks), new ArrayList<>(instructions));
+
+        System.out.println(resultSecondPart);
     }
 }

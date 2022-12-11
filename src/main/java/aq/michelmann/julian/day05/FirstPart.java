@@ -18,7 +18,7 @@ public class FirstPart {
         return getFirstLayersCreate();
     }
 
-    private void executeInstruction(Triplet<Integer, Integer, Integer> instruction) {
+    protected void executeInstruction(Triplet<Integer, Integer, Integer> instruction) {
             List<String> sourceStack = crateStacks.get(instruction.getValue1() - 1);
             List<String> destinationStack = crateStacks.get(instruction.getValue2() - 1);
             
