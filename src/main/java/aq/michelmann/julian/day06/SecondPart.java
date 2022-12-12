@@ -1,10 +1,10 @@
 package aq.michelmann.julian.day06;
 
-public class SecondPart extends FirstPart {
+public class SecondPart {
     
-    static final int MESSAGE_LENGTH = 14;
+    CommunicationSystem communicationSystem = new CommunicationSystem();
     
-    SecondPart() {
-        super(MESSAGE_LENGTH);
+    Integer solve(String dataStream) {
+        return communicationSystem.findEndOfFirstMessageAsIndex(dataStream);
     }
 }
