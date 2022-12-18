@@ -1,5 +1,6 @@
 package aq.michelmann.julian.day07;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.javatuples.Pair;
 
 import java.io.FileNotFoundException;
@@ -8,6 +9,9 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
+        StopWatch stopwatch = new StopWatch();
+        stopwatch.start();
+        
         InputReader inputReader = new InputReader();
         FirstPart firstPart = new FirstPart();
         SecondPart secondPart = new SecondPart();
@@ -21,5 +25,9 @@ public class Main {
         Long resultSecondPart = secondPart.solve(filesystem);
 
         System.out.println(resultSecondPart);
+
+        stopwatch.stop();
+        long timeTaken = stopwatch.getTime();
+        System.out.println(timeTaken);
     }
 }
