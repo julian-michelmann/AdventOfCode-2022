@@ -15,7 +15,7 @@ class FirstPartTest {
     
     @Test
     void solve() throws FileNotFoundException {
-        List<List<Pair<Integer, Boolean>>> treeGrid  = inputReader.getIntegerGrid("08-test");
+        List<List<Pair<Integer, Integer>>> treeGrid  = inputReader.getIntegerGrid("08-test");
         
         Long result = firstPart.solve(treeGrid);
         

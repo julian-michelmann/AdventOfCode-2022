@@ -12,25 +12,7 @@ import java.util.stream.Collectors;
 
 public class InputReader extends InputReaderBase {
 
-    public List<List<Pair<Integer, Boolean>>> getIntegerGrid(String day) throws FileNotFoundException {
-        Scanner myReader = readFile(day);
-        List<List<Pair<Integer, Boolean>>> treeGrid = new ArrayList<>();
-
-        while (myReader.hasNextLine()) {
-            String[] nextLine = myReader.nextLine().split("");
-            
-            List<Pair<Integer, Boolean>> treeRow = Arrays.stream(nextLine)
-                    .map(Integer::parseInt)
-                    .map(height -> new Pair<>(height, false))
-                    .collect(Collectors.toCollection(ArrayList::new));
-
-            treeGrid.add(treeRow);
-        }
-        
-        return treeGrid;
-    }
-
-    public List<List<Pair<Integer, Integer>>> getSecond(String day) throws FileNotFoundException {
+    public List<List<Pair<Integer, Integer>>> getIntegerGrid(String day) throws FileNotFoundException {
         Scanner myReader = readFile(day);
         List<List<Pair<Integer, Integer>>> treeGrid = new ArrayList<>();
 

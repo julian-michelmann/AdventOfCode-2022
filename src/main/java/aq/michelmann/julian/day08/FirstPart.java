@@ -17,7 +17,7 @@ public class FirstPart {
          */
 
     // Trees<X, Y, isHidden>
-    public long solve(List<List<Pair<Integer, Boolean>>> treeGrid) {
+    public long solve(List<List<Pair<Integer, Integer>>> treeGrid) {
 
         for (int x = 1; x < treeGrid.size() - 1; x++) {
             List<Integer> treeRow = treeGrid.get(x).stream().map(Pair::getValue0).toList();
@@ -27,7 +27,7 @@ public class FirstPart {
                 boolean isHiddenInRow = isHiddenInLine(y, treeRow);
                 boolean isHiddenInColum = isHiddenInLine(x, treeColumn);
 
-                Pair<Integer, Boolean> markedTree = new Pair<>(treeRow.get(y), isHiddenInRow && isHiddenInColum);
+                Pair<Integer, Integer> markedTree = new Pair<>(treeRow.get(y), isHiddenInRow && isHiddenInColum ? 1 : 0);
 
                 treeGrid.get(x).set(y, markedTree);
             }
@@ -36,7 +36,7 @@ public class FirstPart {
         return countAllUnhiddenTrees(treeGrid);
     }
 
-    protected List<Integer> getTreeColumn(List<List<Pair<Integer, Boolean>>> treeGrid, Integer position) {
+    protected List<Integer> getTreeColumn(List<List<Pair<Integer, Integer>>> treeGrid, Integer position) {
         return treeGrid
                 .stream()
                 .map(treeRow -> treeRow.get(position))
@@ -44,11 +44,11 @@ public class FirstPart {
                 .toList();
     }
 
-    private long countAllUnhiddenTrees(List<List<Pair<Integer, Boolean>>> treeGrid) {
+    private long countAllUnhiddenTrees(List<List<Pair<Integer, Integer>>> treeGrid) {
         return treeGrid
                 .stream()
                 .flatMap(Collection::stream)
-                .filter(tree -> !tree.getValue1())
+                .filter(tree -> tree.getValue1() == 0)
                 .count();
     }
 
